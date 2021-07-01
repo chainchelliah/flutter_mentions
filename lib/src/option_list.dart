@@ -34,6 +34,7 @@ class OptionList extends StatelessWidget {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     onTap(data[index]);
                   },
@@ -45,8 +46,8 @@ class OptionList extends StatelessWidget {
                           child: Text(
                             data[index]['display'],
                             style: TextStyle(fontSize: 12),
-                          ),
-                        ),
+                    ),
+                  ),
                 );
               },
             ),
