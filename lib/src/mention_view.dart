@@ -429,11 +429,17 @@ class FlutterMentionsState extends State<FlutterMentions> {
                     suggestionListDecoration: widget.suggestionListDecoration,
                     data: list.data.where((element) {
                       final ele = element['display'].toLowerCase();
+                      final id = element['id'].toLowerCase();
                       final str = _selectedMention!.str
                           .toLowerCase()
                           .replaceAll(RegExp(_pattern), '');
-
-                      return ele == str ? false : ele.contains(str);
+                      if (ele == str || id == str) {
+                        return false;
+                      }
+                      if (ele.contains(str) || id.contains(str)) {
+                        return true;
+                      }
+                      return false;
                     }).toList(),
                     onTap: (value) {
                       addMention(value, list);
